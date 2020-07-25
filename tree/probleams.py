@@ -25,6 +25,15 @@ def levelOrderTraversal(node):
     print()
 
 
+def getMaximum(node): # get the maximum key value in the binary tree. 
+    temp = node
+    while temp.right is not None:
+        temp = temp.right
+    return temp.key 
+
+
+def getMax(node):  # get the maximum without using the recursion
+    pass 
 
 
 if __name__ == '__main__':
@@ -35,4 +44,4 @@ if __name__ == '__main__':
     print(bst.root)
     bst.printTree()
     levelOrderTraversal(bst.root)
-
+    print(f"The maximum key in the binary search tree is : {getMaximum(bst.root)}")
