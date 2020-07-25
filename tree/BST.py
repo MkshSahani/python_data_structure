@@ -1,6 +1,7 @@
 # BST.py 
 
 import random 
+import time 
 
 class Node: 
 
@@ -23,23 +24,24 @@ class BST:
             self.root = Node()
             self.root.key = key
         else:
-            
+          self.insert(self.root, key)
+
     def insert(self, node, key):
-        if node is Node:
+        if node is None:
             node = Node()
             node.key = key
-        
-        if key >= node.key:
-            self.insert(node.right, key)
-        else:
-            self.insert(node.left, key)
-
+        else:  
+            if key >= node.key:
+                node.right = self.insert(node.right, key)
+            else:
+                node.left = self.insert(node.left, key)
+        return node
     
     def printTree(self):
-        pass
+        self.inorderTraversal(self.root)
     
     def inorderTraversal(self, node):
-        if node is None:
+        if node is not None:
             self.inorderTraversal(node.left)
             print(f"{node.key} ", end=" ")
             self.inorderTraversal(node.right)
@@ -47,4 +49,11 @@ class BST:
 
 
 if __name__ == '__main__':
-    pass
+    bst = BST()
+    for i in range(20):
+        # time.sleep(0.5)
+        bst.insertNode(random.randint(1, 100))
+    print(bst.root)
+    bst.printTree()
+    print()
+        
