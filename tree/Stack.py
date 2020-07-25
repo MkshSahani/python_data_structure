@@ -7,7 +7,7 @@ class Stack:
         
 
     def push(self, element):
-        self.stack.append(element)
+        self.stack.insert(0, element)
     
     def pop(self):
         if self.isempty():
