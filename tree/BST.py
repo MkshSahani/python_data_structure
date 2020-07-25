@@ -43,8 +43,28 @@ class BST:
     def inorderTraversal(self, node):
         if node is not None:
             self.inorderTraversal(node.left)
-            print(f"{node.key} ", end=" ")
+            print(f"{node.key} ", end='')
             self.inorderTraversal(node.right)
+
+    def preorderPrint(self):
+        self.preorderTraversal(self.root)
+
+    def preorderTraversal(self, node):
+        if node is not None:
+            print(f"{node.key} ", end='')
+            self.preorderTraversal(node.left)
+            self.preorderTraversal(node.right)
+
+    def height(self):
+        return self.getheight(self.root)
+    
+    def getheight(self, node):
+        if node is None:
+            return -1
+        else:
+            rh = self.getheight(node.right) + 1
+            lh = self.getheight(node.left) + 1
+            return rh if rh > lh else lh 
 
 
 
@@ -56,4 +76,6 @@ if __name__ == '__main__':
     print(bst.root)
     bst.printTree()
     print()
-        
+    bst.preorderPrint()
+    print()
+    print("Height of the Binary Search Tree : ", bst.height())
