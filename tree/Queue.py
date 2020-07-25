@@ -15,7 +15,7 @@ class Queue:
             return self.queue.pop(0)
     
     def isempty(self):
-        self.queue == []
+        return self.queue == []
 
     def front(self):
         if self.isempty():
