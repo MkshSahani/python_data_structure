@@ -32,8 +32,37 @@ def getMaximum(node): # get the maximum key value in the binary tree.
     return temp.key 
 
 
+# def getMin(nodde)
+def getMin(node):  # get the minimum value in the binary search tree. 
+    if node is None:
+        return None
+    min = node.key
+    queue = Queue.Queue()
+    queue.enqueue(node)
+    while not queue.isempty():  # traverse all the nodes in the binary tree. 
+        node = queue.dequeue()
+        min = min if min < node.key else node.key
+        if node.left is not None:
+            queue.enqueue(node.left)
+        if node.right is not None:
+            queue.enqueue(node.right)
+    return min 
+
 def getMax(node):  # get the maximum without using the recursion
-    pass 
+    if node is None:
+        return None
+
+    queue = Queue.Queue()
+    queue.enqueue(node)
+    max = node.key
+    while not queue.isempty():
+        node = queue.dequeue()
+        max = max if max > node.key else node.key
+        if node.left is not None:
+            queue.enqueue(node.left)
+        if node.right is not None:
+            queue.enqueue(node.right)
+    return max  
 
 
 if __name__ == '__main__':
@@ -45,3 +74,6 @@ if __name__ == '__main__':
     bst.printTree()
     levelOrderTraversal(bst.root)
     print(f"The maximum key in the binary search tree is : {getMaximum(bst.root)}")
+    print(
+        f"The maximum key in the binary search tree is : {getMax(bst.root)}")
+    print(f"The Minimum key in the binary search tree is : {getMin(bst.root)}")

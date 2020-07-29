@@ -1,7 +1,7 @@
 # BST.py 
 
 import random 
-import time 
+import time  
 
 class Node: 
 
