@@ -2,7 +2,8 @@
 
 import random 
 
-class Node: 
+class Node:
+    
     def __init__(self): 
         self.key = None 
         self.link = None 
@@ -46,6 +47,13 @@ class List:
             else:
                 previous.link = temp.link 
 
+    def search(self, key):
+        temp = self.head
+        while temp != None and temp.key != key:
+            temp = temp.link         
+        if temp != None:
+            return temp.key, True
+
 if __name__ == '__main__':
     # singlyLinkedList implementation
     list = List()
@@ -55,4 +63,5 @@ if __name__ == '__main__':
     for i in range(4):
         key = int(input())
         list.deleteNode(key)
-        list.printList() # print the modified list. 
+        list.printList()  # print the modified list.
+    
