@@ -173,6 +173,24 @@ def deepestNode(node):
 
     return temp 
 
+# count leaf node in the tree 
+
+def countLeaf(node): 
+    if node is not None: 
+        return 0 
+    queue = Queue.Queue()
+    queue.enqueue(node)
+    count = 0 
+    while not queue.isempty(): 
+        temp = queue.dequeue()
+        if (temp.left is None) and (temp.right is None): 
+            count += 1 
+        if temp.right is not  None: 
+            queue.enqueue(temp.right)
+        if temp.left is not None: 
+            queue.enqueue(temp.left)
+    return count 
+
 
 if __name__ == '__main__':
     bst = BST.BST()
@@ -191,3 +209,4 @@ if __name__ == '__main__':
     print("Height of tree : ", height(bst.root)) # get the height of tree. 
     print("Height of tree : ", getHeight(bst.root)) # get  the height of tree. 
     print("key of the deepest node :  ", deepestNode(bst.root).key)
+    print("Numer of leaf node is tree : ", countLeaf(bst.root))
