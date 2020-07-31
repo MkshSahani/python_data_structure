@@ -155,7 +155,23 @@ def getHeight(node):
 
     return count 
 
+# find the deepest node in binary tree. 
 
+def deepestNode(node): 
+    if node is  None: 
+        return None 
+    
+    queue = Queue.Queue()
+    # queue.enqueue(node)
+    queue.enqueue(node)
+    while not queue.isempty():
+        temp = queue.dequeue()
+        if temp.left is not None: 
+            queue.enqueue(temp.left)
+        if temp.right is not None: 
+            queue.enqueue(temp.right)
+
+    return temp 
 
 
 if __name__ == '__main__':
@@ -174,3 +190,4 @@ if __name__ == '__main__':
     print() 
     print("Height of tree : ", height(bst.root)) # get the height of tree. 
     print("Height of tree : ", getHeight(bst.root)) # get  the height of tree. 
+    print("key of the deepest node :  ", deepestNode(bst.root).key)
