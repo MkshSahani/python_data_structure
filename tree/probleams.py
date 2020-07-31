@@ -89,11 +89,60 @@ def getSize(node):
 
     return count 
 
+# get the level order reversed.
+
+def reverseLevelOrder(node):
+    if node is None:
+        return False
+    
+    queue = Queue.Queue()
+    queue.enqueue(node)
+    stack = Stack.Stack()
+
+    while not queue.isempty():
+        temp = queue.dequeue()
+        stack.push(temp)
+        if temp.left is not None:
+            queue.enqueue(temp.left)
+        if temp.right is not None:
+            queue.enqueue(temp.right)
+
+    while not stack.isempty():
+        print(stack.pop().key, end = ' ')
+
+def height(node):
+    if node is None:
+        return - 1
+    lh = height(node.left) + 1
+    rh = height(node.right) + 1
+    return lh if lh > rh else rh 
+
+
+def preorderTraversal(node):
+    if node is not None:
+        print(node.key, end=' ')
+        preorderTraversal(node.left) 
+        preorderTraversal(node.right) 
+
+def inorderTraversal(node):
+    if node is not None:
+        inorderTraversal(node.left)
+        print(node.key, end=' ')
+        inorderTraversal(node.right)
+
 if __name__ == '__main__':
     bst = BST.BST()
     for i in range(20):
         # time.sleep(0.5)
         bst.insertNode(random.randint(1, 100))
-    levelOrderTraversal(bst)
-    print("The size of binary tree  is  ", size(bst.root))  # print the number node in give tree.
-    print("The size of binary tree is : ", getSize(bst.root)) # get the size of binary tree. 
+    # levelOrderTraversal(bst)
+    # print("The size of binary tree  is  ", size(bst.root))  # print the number node in give tree.
+    # print("The size of binary tree is : ", getSize(bst.root))  # get the size of binary tree.
+    # reverseLevelOrder(bst.root)
+    # print()
+    inorderTraversal(bst.root)
+    print()
+    preorderTraversal(bst.root)
+    print() 
+
+
