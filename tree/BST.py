@@ -66,6 +66,10 @@ class BST:
             lh = self.getheight(node.left) + 1
             return rh if rh > lh else lh 
 
+def size(root):  # find the number of node in the binary tree.
+    if root is None:
+        return 0
+    return size(root.left) + size(root.right) + 1 
 
 
 if __name__ == '__main__':
@@ -79,3 +83,5 @@ if __name__ == '__main__':
     bst.preorderPrint()
     print()
     print("Height of the Binary Search Tree : ", bst.height())
+    print()
+    print("Number  of node in the given tree is ", size(bst.root))

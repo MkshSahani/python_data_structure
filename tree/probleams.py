@@ -6,6 +6,7 @@ import random
 
 # do the levelorder traversal using Queue : concept of BFS is used. 
 def levelOrderTraversal(node):
+    node = node.root 
     if node is None:
         return
     
@@ -64,16 +65,17 @@ def getMax(node):  # get the maximum without using the recursion
             queue.enqueue(node.right)
     return max  
 
+def size(node):  # find the size : number of node in the binary tree using reursion :
+    if node is None:
+        return 0
+    return size(node.left) + size(node.right) + 1 
+
+# find the size o
 
 if __name__ == '__main__':
     bst = BST.BST()
     for i in range(20):
         # time.sleep(0.5)
         bst.insertNode(random.randint(1, 100))
-    print(bst.root)
-    bst.printTree()
-    levelOrderTraversal(bst.root)
-    print(f"The maximum key in the binary search tree is : {getMaximum(bst.root)}")
-    print(
-        f"The maximum key in the binary search tree is : {getMax(bst.root)}")
-    print(f"The Minimum key in the binary search tree is : {getMin(bst.root)}")
+    levelOrderTraversal(bst)
+    print("The size of binary tree  is  ", size(bst.root)) # print the number node in give tree. 
