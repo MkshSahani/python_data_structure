@@ -112,7 +112,7 @@ def reverseLevelOrder(node):
 
 def height(node):
     if node is None:
-        return - 1
+        return -1
     lh = height(node.left) + 1
     rh = height(node.right) + 1
     return lh if lh > rh else rh 
@@ -130,6 +130,34 @@ def inorderTraversal(node):
         print(node.key, end=' ')
         inorderTraversal(node.right)
 
+
+def getHeight(node):
+    if node is None: 
+        return False
+    else:
+        marker = BST.Node()
+        node.key = 323233223
+        queue = Queue.Queue()
+        queue.enqueue(node)
+        queue.enqueue(marker)
+        count = -1
+        while not queue.isempty(): 
+            temp = queue.dequeue()
+            if temp == marker:
+                count += 1 
+                if not queue.isempty(): 
+                    queue.enqueue(marker)
+            else: 
+                if temp.left is not None:
+                    queue.enqueue(temp.left)
+                if temp.right is not None:
+                    queue.enqueue(temp.right)
+
+    return count 
+
+
+
+
 if __name__ == '__main__':
     bst = BST.BST()
     for i in range(20):
@@ -144,5 +172,5 @@ if __name__ == '__main__':
     print()
     preorderTraversal(bst.root)
     print() 
-
-
+    print("Height of tree : ", height(bst.root)) # get the height of tree. 
+    print("Height of tree : ", getHeight(bst.root)) # get  the height of tree. 
