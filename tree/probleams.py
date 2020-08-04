@@ -1,4 +1,5 @@
 # probleams.py 
+# in most of these probleams nee aux. data structure like Queue or Stack. 
 
 import Queue 
 import BST 
@@ -175,28 +176,67 @@ def deepestNode(node):
 
 # count leaf node in the tree 
 
-def countLeaf(node): 
-    if node is not None: 
-        return 0 
+def countLeaf(root):
+    if root is None:
+        return 0
+        
     queue = Queue.Queue()
-    queue.enqueue(node)
+    queue.enqueue(root)
     count = 0 
-    while not queue.isempty(): 
+    while not queue.isempty():
         temp = queue.dequeue()
-        if (temp.left is None) and (temp.right is None): 
-            count += 1 
-        if temp.right is not  None: 
-            queue.enqueue(temp.right)
-        if temp.left is not None: 
-            queue.enqueue(temp.left)
+        if temp.left is None and temp.right is None:
+            count += 1
+        else:
+            if temp.left is not None:
+                queue.enqueue(temp.left)
+            if temp.right is not None:
+                queue.enqueue(temp.right)
+
     return count 
 
+# count number of full node. 
+
+def countFullNode(root):
+    if root is None:
+        return 0
+    queue = Queue.Queue()
+    queue.enqueue(root)
+    count = 0 
+    while not queue.isempty():
+        temp = queue.dequeue()
+        if temp.left is not None and temp.right is not None:
+            count += 1
+        else:
+            if temp.left is not None:
+                queue.enqueue(temp.left)
+            if temp.right is not None:
+                queue.enqueue(temp.right)
+
+    return count
+
+# if binary tree are structural same
+
+def areStructuralSame(root1, root2):
+    if root1 is None and root2 is None:
+        return True
+    if root1 is None or root2 is None:
+        return False
+    
+    if root1.key == root2.key:
+        return areStructuralSame(root1.left, root2.left) and areStructuralSame(root1.right, root2.right) 
+    else:
+        return False 
 
 if __name__ == '__main__':
     bst = BST.BST()
-    for i in range(20):
+    lst = [15, 11, 32, 4, 8, 43, 13, 43, 31, 9, 3, 4, 43, -1, 43]
+    for i in lst:
         # time.sleep(0.5)
-        bst.insertNode(random.randint(1, 100))
+        bst.insertNode(i)
+    bst1 = BST.BST()
+    for i in range(len(lst)):
+        bst1.insertNode(random.randint(1, 100))
     # levelOrderTraversal(bst)
     # print("The size of binary tree  is  ", size(bst.root))  # print the number node in give tree.
     # print("The size of binary tree is : ", getSize(bst.root))  # get the size of binary tree.
@@ -210,3 +250,7 @@ if __name__ == '__main__':
     print("Height of tree : ", getHeight(bst.root)) # get  the height of tree. 
     print("key of the deepest node :  ", deepestNode(bst.root).key)
     print("Numer of leaf node is tree : ", countLeaf(bst.root))
+    print("Number of full Node is : ", countFullNode(bst.root)) # number of full node. 
+
+    print("Strutural Same or not check : ", areStructuralSame(bst.root, bst.root))
+    print("Structural Same or not check : ", areStructuralSame(bst.root, bst1.root))
