@@ -84,4 +84,4 @@ if __name__ == '__main__':
     print()
     print("Height of the Binary Search Tree : ", bst.height())
     print()
-    print("Number  of node in the given tree is ", size(bst.root))
+    print("Number  of node in the given tree is ", size(bst.root)) # add this for checking. 
