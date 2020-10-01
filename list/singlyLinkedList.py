@@ -2,20 +2,21 @@
 
 import random 
 
+# Node the building block of LinkedList. 
 class Node:
     
     def __init__(self): 
-        self.key = None 
-        self.link = None 
+        self.key = None # key value of Node. 
+        self.link = None # link to the next node. 
 
 
-
+# Singly LinkedLists. 
 class List:
     
     def __init__(self):
         self.head = None
         
-    def insertNode(self, key):
+    def insertNode(self, key): # insert node at the end of linked List. 
         if self.head is None:
             self.head = Node()
             self.head.key = key
@@ -26,7 +27,7 @@ class List:
             temp.link = Node()
             temp.link.key = key
 
-    def printList(self):
+    def printList(self): # print Linked List. 
         temp = self.head
         print("List : ", end = '')
         while temp.link is not None:
